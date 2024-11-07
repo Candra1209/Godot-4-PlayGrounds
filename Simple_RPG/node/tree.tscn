@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c50i0qhnw5n1y"]
+
+[ext_resource type="Texture2D" uid="uid://dmrxiydgrv4vm" path="res://Simple_RPG/assets/object/TX Plant.png" id="1_nfgnp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_es616"]
+radius = 5.09902
+
+[node name="Tree" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nfgnp")
+offset = Vector2(0.725, -60)
+region_enabled = true
+region_rect = Rect2(161, 17, 95, 136)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_es616")

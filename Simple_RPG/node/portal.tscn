@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://dh6bpy50wbnqh"]
+
+[ext_resource type="Script" path="res://Simple_RPG/scripts/Portal.cs" id="1_enu8m"]
+[ext_resource type="Texture2D" uid="uid://d1l4llvwew3v6" path="res://Simple_RPG/assets/object/TX Props.png" id="1_i7bnd"]
+[ext_resource type="PackedScene" uid="uid://bqnbugrdv4uix" path="res://Simple_RPG/node/indicator.tscn" id="3_unmcp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_36ci1"]
+radius = 19.0
+height = 50.0
+
+[sub_resource type="Animation" id="Animation_3s5id"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Effect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fh3vq"]
+resource_name = "active_effect"
+length = 3.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Effect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.9, 1.5, 2.13333, 2.73333, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27451), Color(1, 1, 1, 1), Color(1, 1, 1, 0.27451), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsyuk"]
+_data = {
+"RESET": SubResource("Animation_3s5id"),
+"active_effect": SubResource("Animation_fh3vq")
+}
+
+[node name="Portal" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_enu8m")
+_isActive = true
+
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(100, 100, 100, 1)
+position = Vector2(-2.74181e-05, 6.13928e-06)
+scale = Vector2(1.02083, 1.05)
+texture = ExtResource("1_i7bnd")
+region_enabled = true
+region_rect = Rect2(352, 264, 96, 80)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_i7bnd")
+region_enabled = true
+region_rect = Rect2(352, 264, 96, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_36ci1")
+
+[node name="Effect" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="Effect_1" type="Sprite2D" parent="Effect"]
+position = Vector2(-39, -3.66)
+texture = ExtResource("1_i7bnd")
+region_enabled = true
+region_rect = Rect2(328, 264, 8, 8)
+
+[node name="Effect_2" type="Sprite2D" parent="Effect"]
+position = Vector2(0.945, -30.54)
+texture = ExtResource("1_i7bnd")
+region_enabled = true
+region_rect = Rect2(336, 264, 8, 8)
+
+[node name="Effect_3" type="Sprite2D" parent="Effect"]
+position = Vector2(39, -3)
+texture = ExtResource("1_i7bnd")
+region_enabled = true
+region_rect = Rect2(335.14, 272, 8, 8)
+
+[node name="Effect_4" type="Sprite2D" parent="Effect"]
+position = Vector2(0, 24)
+texture = ExtResource("1_i7bnd")
+region_enabled = true
+region_rect = Rect2(328, 272, 8, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rsyuk")
+}
+
+[node name="indicator" parent="." instance=ExtResource("3_unmcp")]
+position = Vector2(1, -36)
+scale = Vector2(0.3, 0.3)
+_isActive = false

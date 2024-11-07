@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbg6jmd51s5q"]
+
+[ext_resource type="PackedScene" uid="uid://cnoeqwknk4k3b" path="res://Simple_RPG/node/player.tscn" id="1_0v00g"]
+[ext_resource type="PackedScene" uid="uid://5je3skr3apfp" path="res://Simple_RPG/node/chest.tscn" id="2_epy5g"]
+[ext_resource type="PackedScene" uid="uid://dh6bpy50wbnqh" path="res://Simple_RPG/node/portal.tscn" id="3_kd6a2"]
+[ext_resource type="PackedScene" uid="uid://c50i0qhnw5n1y" path="res://Simple_RPG/node/tree.tscn" id="4_n6434"]
+
+[node name="test_schene" type="Node2D"]
+
+[node name="Y-Sort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Chest" parent="Y-Sort" instance=ExtResource("2_epy5g")]
+position = Vector2(515, 170)
+_skin = 1
+
+[node name="Chest2" parent="Y-Sort" instance=ExtResource("2_epy5g")]
+position = Vector2(242, 169)
+
+[node name="Chest3" parent="Y-Sort" instance=ExtResource("2_epy5g")]
+position = Vector2(517, 214)
+_skin = 2
+_isOpen = true
+
+[node name="Chest4" parent="Y-Sort" instance=ExtResource("2_epy5g")]
+position = Vector2(461, 215)
+_skin = 2
+_isOpen = true
+
+[node name="Chest5" parent="Y-Sort" instance=ExtResource("2_epy5g")]
+position = Vector2(462, 169)
+_skin = 0
+_isOpen = true
+
+[node name="Player" parent="Y-Sort" instance=ExtResource("1_0v00g")]
+position = Vector2(378, 169)
+
+[node name="Tree" parent="Y-Sort" instance=ExtResource("4_n6434")]
+position = Vector2(592, 225)
+
+[node name="Portal" parent="." instance=ExtResource("3_kd6a2")]
+z_index = -1
+position = Vector2(372, 271)
