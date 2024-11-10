@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6q2lmkv5k0dp"]
+
+[ext_resource type="Script" path="res://Simple_RPG/scripts/MarkerDialog.cs" id="1_dbjao"]
+
+[node name="MarkerDialog" type="Marker2D"]
+position = Vector2(171, 81)
+script = ExtResource("1_dbjao")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = -26.0
+offset_top = 18.0
+offset_right = 26.0
+offset_bottom = 49.0
+text = "pukul"
+
+[connection signal="pressed" from="Button" to="." method="HitButtonPressed"]

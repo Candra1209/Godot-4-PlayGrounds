@@ -1,0 +1,146 @@
+[gd_scene load_steps=9 format=3 uid="uid://b14tdcwv02y80"]
+
+[ext_resource type="Texture2D" uid="uid://bmtglhp2oydfb" path="res://Simple_RPG/assets/object/TX Player.png" id="1_8tek4"]
+[ext_resource type="Script" path="res://Simple_RPG/scripts/DummyEnemy.cs" id="1_yllcm"]
+[ext_resource type="PackedScene" uid="uid://c6q2lmkv5k0dp" path="res://Simple_RPG/node/marker_dialog.tscn" id="3_3soby"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ont"]
+size = Vector2(21, 14)
+
+[sub_resource type="Animation" id="Animation_b77qv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k6ksu"]
+resource_name = "getHit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0.0166664, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2),
+"transitions": PackedFloat32Array(0.217638, 3.605, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_htoa5"]
+resource_name = "hit_dialog_show"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1pwa1"]
+_data = {
+"RESET": SubResource("Animation_b77qv"),
+"getHit": SubResource("Animation_k6ksu"),
+"hit_dialog_show": SubResource("Animation_htoa5")
+}
+
+[node name="DummyEnemy" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+script = ExtResource("1_yllcm")
+Health = 100
+Defender = 10
+Power = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 64)
+
+[node name="depan" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(1, 7)
+texture = ExtResource("1_8tek4")
+offset = Vector2(-1, -19)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 64)
+
+[node name="belakang" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(0, 18)
+texture = ExtResource("1_8tek4")
+offset = Vector2(0, -30)
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 64)
+
+[node name="samping" type="Sprite2D" parent="Sprite2D"]
+visible = false
+position = Vector2(0, 18)
+texture = ExtResource("1_8tek4")
+offset = Vector2(0, -30)
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6)
+shape = SubResource("RectangleShape2D_l2ont")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1pwa1")
+}
+
+[node name="MarkerDialog" parent="." instance=ExtResource("3_3soby")]
+z_index = 1
+position = Vector2(0, -15)

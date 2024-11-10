@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbg6jmd51s5q"]
+[gd_scene load_steps=7 format=3 uid="uid://cbg6jmd51s5q"]
 
 [ext_resource type="PackedScene" uid="uid://cnoeqwknk4k3b" path="res://Simple_RPG/node/player.tscn" id="1_0v00g"]
 [ext_resource type="PackedScene" uid="uid://5je3skr3apfp" path="res://Simple_RPG/node/chest.tscn" id="2_epy5g"]
 [ext_resource type="PackedScene" uid="uid://dh6bpy50wbnqh" path="res://Simple_RPG/node/portal.tscn" id="3_kd6a2"]
+[ext_resource type="PackedScene" uid="uid://cdng7gw6em5ra" path="res://Simple_RPG/node/Bush.tscn" id="4_c1r42"]
 [ext_resource type="PackedScene" uid="uid://c50i0qhnw5n1y" path="res://Simple_RPG/node/tree.tscn" id="4_n6434"]
+[ext_resource type="PackedScene" uid="uid://b14tdcwv02y80" path="res://Simple_RPG/node/dummy_enemy.tscn" id="5_gc8k8"]
 
 [node name="test_schene" type="Node2D"]
 
@@ -37,6 +39,12 @@ position = Vector2(378, 169)
 
 [node name="Tree" parent="Y-Sort" instance=ExtResource("4_n6434")]
 position = Vector2(592, 225)
+
+[node name="Bush" parent="Y-Sort" instance=ExtResource("4_c1r42")]
+position = Vector2(327, 96)
+
+[node name="DummyEnemy" parent="Y-Sort" instance=ExtResource("5_gc8k8")]
+position = Vector2(409, 59)
 
 [node name="Portal" parent="." instance=ExtResource("3_kd6a2")]
 z_index = -1

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdng7gw6em5ra"]
+
+[ext_resource type="Texture2D" uid="uid://dmrxiydgrv4vm" path="res://Simple_RPG/assets/object/TX Plant.png" id="1_e8sdg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gjeeh"]
+radius = 6.0
+height = 32.0
+
+[node name="Bush" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("1_e8sdg")
+offset = Vector2(0, -16)
+region_enabled = true
+region_rect = Rect2(216, 185, 47, 42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gjeeh")
+debug_color = Color(0.24209, 0.600252, 0.593202, 0.42)
